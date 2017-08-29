@@ -6,55 +6,42 @@ function Game() {
   this.board = new GameBoard();
   this.players = [
     new Player(CellState.X),
-    new Player(CellState.O),
+    new Player(CellState.O, true),
   ];
 
   this.activePlayerIndex = 0;
+}
 
-  //  Board indices for wins
-  //  0 1 2
-  //  3 4 5
-  //  6 7 8
-  this.winPatterns = [
-    [ 0, 1, 2 ],
-    [ 3, 4, 5 ],
-    [ 6, 7, 8 ],
-    [ 0, 3, 6 ],
-    [ 1, 4, 7 ],
-    [ 2, 5, 8 ],
-    [ 0, 4, 8 ],
-    [ 2, 4, 6 ],
-  ];
+Game.prototype.aiMove = function(cellIndex) {
+  if (this.getActivePlayer().aiEnabled) {
+    const cellIndex = this.getActivePlayer().ai.getMove(this);
+    if (this.board.getCellByIndex(cellIndex) === CellState.EMPTY) {
+      this.board.setCellByIndex(cellIndex, this.getActivePlayer().cellState);
+      this.nextPlayer();
+    }
+  }
 }
 
 Game.prototype.getActivePlayer = function() {
   return this.players[this.activePlayerIndex];
 }
 
-Game.prototype.getWinner = function() {
-  const patternMatches = (pattern, cellState) => {
-    for (let c = 0; c < pattern.length; ++c) {
-      const cell = this.board.getCellByIndex(pattern[c]);
-
-      if (cell !== cellState) {
-        return false;
-      }
-    }
-
-    return true;
-  };
-
-  for (let p = 0; p < this.winPatterns.length; ++p) {
-    const pattern = this.winPatterns[p];
-
-    if (patternMatches(pattern, CellState.X)) {
-      return CellState.X;
-    } else if (patternMatches(pattern, CellState.O)) {
-      return CellState.O;
+Game.prototype.move = function(player, cellIndex) {
+  if (player === this.getActivePlayer()) {
+    if (this.board.getCellByIndex(cellIndex) === CellState.EMPTY) {
+      this.board.setCellByIndex(cellIndex, player.cellState);
+      this.nextPlayer();
     }
   }
 
-  return CellState.EMPTY;
+  this.aiMove();
+}
+
+Game.prototype.nextPlayer = function() {
+  ++this.activePlayerIndex;
+  if (this.activePlayerIndex >= this.players.length) {
+    this.activePlayerIndex = 0;
+  }
 }
 
 module.exports = Game;

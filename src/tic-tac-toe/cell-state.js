@@ -10,7 +10,19 @@ const CellState = {
       case CellState.X:
         return CellState.O;
       case CellState.O:
-      return CellState.X;
+        return CellState.X;
+    }
+  },
+  toString: function(cellState) {
+    switch (cellState) {
+      default:
+        return '?';
+      case CellState.EMPTY:
+        return '_';
+      case CellState.X:
+        return 'X';
+      case CellState.O:
+        return 'O';
     }
   }
 };
