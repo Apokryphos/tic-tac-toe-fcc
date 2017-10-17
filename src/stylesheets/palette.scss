@@ -1,5 +1,5 @@
 @mixin CellTextShadow($color) {
-  text-shadow: 2px 2px 2px darken($color, 50%);
+  text-shadow: 4px 4px 0px darken($color, 30%);
 }
 
 $page-background-color: #4d5359;

@@ -1,0 +1,29 @@
+$media-xs-width: 320px;
+$media-small-width: 576px;
+$media-medium-width: 768px;
+$media-large-width: 1024px;
+$media-xl-width: 1200px;
+
+@mixin media-small {
+  @media (min-width: #{$media-small-width}) and (min-height: #{$media-small-width}) {
+    @content;
+  }
+}
+
+@mixin media-medium {
+  @media (min-width: #{$media-medium-width}) and (min-height: #{$media-medium-width}) {
+    @content;
+  }
+}
+
+@mixin media-large {
+  @media (min-width: #{$media-large-width}) and (min-height: #{$media-large-width}) {
+    @content;
+  }
+}
+
+@mixin media-xl {
+  @media (min-width: #{$media-xl-width}) and (min-height: #{$media-xl-width}) {
+    @content;
+  }
+}

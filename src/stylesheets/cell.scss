@@ -1,9 +1,8 @@
+@import 'media';
 @import 'palette';
 
-$cell-size: 1.5em;
-$cell-border-width: 0.125em;
-$cell-border-radius: 0.25em;
-$cell-spacing: $cell-border-width * 2;
+$cell-border-width: 0.5em;
+$cell-border-radius: 25%;
 
 .cell {
   background-color: $cell-background-color;
@@ -12,17 +11,12 @@ $cell-spacing: $cell-border-width * 2;
   color: transparent;
   float: left;
   font-family: 'Permanent Marker', cursive;
-  font-size: 600%;
-  height: $cell-size;
-  line-height: $cell-size;
   margin: 0;
-  margin-right: $cell-spacing;
-  margin-top: $cell-spacing;
   padding: 0;
   vertical-align: middle;
   text-align: center;
+  overflow: hidden;
   @include CellTextShadow(transparent);
-  width: $cell-size;
 
   &:focus {
     outline: none;
@@ -31,9 +25,28 @@ $cell-spacing: $cell-border-width * 2;
 
 .cell-text {
   display: inline-block;
+  font-size: 80px;
+  height: 100%;
+  line-height: 100%;
   position: relative;
   top: 50%;
   transform: translate(0, -50%);
+
+  @include media-small() {
+    font-size: 144px;
+  }
+
+  @include media-medium() {
+    font-size: 192px;
+  }
+
+  @include media-large() {
+    font-size: 257px;
+  }
+
+  @include media-xl() {
+    font-size: 300px;
+  }
 }
 
 .cell-x {
@@ -41,7 +54,7 @@ $cell-spacing: $cell-border-width * 2;
   color: $x-color;
   border-color: $x-border-color;
   @include CellTextShadow($x-color);
-  transition: all 1s ease;
+  transition: background-color 1s ease, border-color 1s ease, color 1s ease, text-shadow 1s ease-in;
 }
 
 .cell-o {
@@ -49,7 +62,7 @@ $cell-spacing: $cell-border-width * 2;
   color: $o-color;
   border-color: $o-border-color;
   @include CellTextShadow($o-color);
-  transition: all 1s ease;
+  transition: background-color 1s ease, border-color 1s ease, color 1s ease, text-shadow 1s ease;
 }
 
 .active-player-x:hover {
