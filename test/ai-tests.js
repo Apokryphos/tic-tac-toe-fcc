@@ -1,10 +1,10 @@
 const test = require('tape');
-const Ai = require('./../tic-tac-toe/ai.js');
-const Game = require('./../tic-tac-toe/game.js');
-const CellState = require('./../tic-tac-toe/cell-state.js');
-const Player = require('./../tic-tac-toe/player.js');
-const Util = require('./../tic-tac-toe/util.js');
-const VictoryState = require('./../tic-tac-toe/victory-state.js');
+const Ai = require('./../src/js/tic-tac-toe/ai.js');
+const Game = require('./../src/js/tic-tac-toe/game.js');
+const CellState = require('./../src/js/tic-tac-toe/cell-state.js');
+const Player = require('./../src/js/tic-tac-toe/player.js');
+const Util = require('./../src/js/tic-tac-toe/util.js');
+const VictoryState = require('./../src/js/tic-tac-toe/victory-state.js');
 
 test('Ai first move', (t) => {
   const game = new Game();

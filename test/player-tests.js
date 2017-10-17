@@ -1,6 +1,6 @@
 const test = require('tape');
-const CellState = require('./../tic-tac-toe/cell-state.js');
-const Player = require('./../tic-tac-toe/player.js');
+const CellState = require('./../src/js/tic-tac-toe/cell-state.js');
+const Player = require('./../src/js/tic-tac-toe/player.js');
 
 test('Player constructor', (t) => {
   t.plan(7);

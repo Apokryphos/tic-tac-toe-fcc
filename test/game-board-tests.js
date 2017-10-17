@@ -1,7 +1,7 @@
 const test = require('tape');
-const CellState = require('./../tic-tac-toe/cell-state.js');
-const GameBoard = require('./../tic-tac-toe/game-board.js');
-const VictoryState = require('./../tic-tac-toe/victory-state.js');
+const CellState = require('./../src/js/tic-tac-toe/cell-state.js');
+const GameBoard = require('./../src/js/tic-tac-toe/game-board.js');
+const VictoryState = require('./../src/js/tic-tac-toe/victory-state.js');
 
 test('Board constructor', (t) => {
   const board = new GameBoard();

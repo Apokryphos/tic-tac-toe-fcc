@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "tape ./src/test/tests.js | faucet"
+    "test": "tape ./test/tests.js | faucet"
   },
   "author": "",
   "license": "ISC",
