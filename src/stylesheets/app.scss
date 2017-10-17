@@ -1,0 +1,16 @@
+@import 'palette';
+
+.player-x {
+  @include CellTextShadow($x-color);
+  color: $x-color;
+}
+
+.player-o {
+  @include CellTextShadow($o-color);
+  color: $o-color;
+}
+
+.draw {
+  @include CellTextShadow($draw-color);
+  color: $draw-color;
+}

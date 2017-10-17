@@ -2,14 +2,21 @@ const CellState = require('./cell-state.js')
 const GameBoard = require('./game-board.js')
 const Player = require('./player.js')
 
-function Game() {
+function Game(playerCellState = CellState.X) {
   this.board = new GameBoard();
   this.players = [
     new Player(CellState.X),
-    new Player(CellState.O, true),
+    new Player(CellState.O),
   ];
 
   this.activePlayerIndex = 0;
+
+  if (playerCellState === CellState.X) {
+    this.players[1].setAiEnabled(true);
+  } else {
+    this.players[0].setAiEnabled(true);
+    this.aiMove();
+  }
 }
 
 Game.prototype.aiMove = function(cellIndex) {

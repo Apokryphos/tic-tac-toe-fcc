@@ -1,2 +1,9 @@
+@import 'app';
 @import 'board';
 @import 'cell';
+@import 'palette';
+
+body {
+  background-color: $page-background-color;
+  font-family: 'Roboto', sans-serif;
+}

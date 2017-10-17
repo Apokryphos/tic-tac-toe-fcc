@@ -11,6 +11,7 @@ class Board extends React.Component {
   renderCell(index) {
     return (
       <Cell
+        activePlayer={this.props.activePlayer}
         cellState={this.props.cells[index]}
         onClick={() => this.handleClick(index)}
       />

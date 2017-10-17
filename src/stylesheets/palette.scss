@@ -1,0 +1,17 @@
+@mixin CellTextShadow($color) {
+  text-shadow: 2px 2px 2px darken($color, 50%);
+}
+
+$page-background-color: #4d5359;
+
+$cell-background-color: $page-background-color;
+
+$draw-color: #eee;
+
+$x-background-color: #8f2d56;
+$x-border-color: #6a0136;
+$x-color: #d81159;
+
+$o-background-color: #79c99e;
+$o-border-color: #508484;
+$o-color: #97db4f;

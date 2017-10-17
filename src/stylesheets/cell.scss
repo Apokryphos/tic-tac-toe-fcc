@@ -1,17 +1,27 @@
-$cell-size: 3em;
+@import 'palette';
+
+$cell-size: 1.5em;
 $cell-border-width: 0.125em;
+$cell-border-radius: 0.25em;
+$cell-spacing: $cell-border-width * 2;
 
 .cell {
-  border: $cell-border-width solid black;
+  background-color: $cell-background-color;
+  border: $cell-border-width solid #333;
+  border-radius: $cell-border-radius;
+  color: transparent;
   float: left;
-  font-size: 150%;
-  font-weight: bold;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 600%;
   height: $cell-size;
   line-height: $cell-size;
-  margin-right: -$cell-border-width;
-  margin-top: -$cell-border-width;
+  margin: 0;
+  margin-right: $cell-spacing;
+  margin-top: $cell-spacing;
   padding: 0;
+  vertical-align: middle;
   text-align: center;
+  @include CellTextShadow(transparent);
   width: $cell-size;
 
   &:focus {
@@ -19,10 +29,37 @@ $cell-border-width: 0.125em;
   }
 }
 
+.cell-text {
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
 .cell-x {
-  color: blue;
+  background-color: $x-background-color;
+  color: $x-color;
+  border-color: $x-border-color;
+  @include CellTextShadow($x-color);
+  transition: all 1s ease;
 }
 
 .cell-o {
-  color: red;
+  background-color: $o-background-color;
+  color: $o-color;
+  border-color: $o-border-color;
+  @include CellTextShadow($o-color);
+  transition: all 1s ease;
+}
+
+.active-player-x:hover {
+  background-color: lighten($x-color, 25%);
+  border-color: lighten($x-border-color, 25%);
+  transition: all 0.33s ease;
+}
+
+.active-player-o:hover {
+  background-color: lighten($o-color, 25%);
+  border-color: lighten($o-border-color, 25%);
+  transition: all 0.33s ease;
 }
