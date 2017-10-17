@@ -1,0 +1,28 @@
+$cell-size: 3em;
+$cell-border-width: 0.125em;
+
+.cell {
+  border: $cell-border-width solid black;
+  float: left;
+  font-size: 150%;
+  font-weight: bold;
+  height: $cell-size;
+  line-height: $cell-size;
+  margin-right: -$cell-border-width;
+  margin-top: -$cell-border-width;
+  padding: 0;
+  text-align: center;
+  width: $cell-size;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.cell-x {
+  color: blue;
+}
+
+.cell-o {
+  color: red;
+}

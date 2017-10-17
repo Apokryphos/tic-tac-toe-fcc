@@ -1,0 +1,15 @@
+.board-container {
+  text-align: center;
+}
+
+.board {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.board-row:after {
+  clear: both;
+  content: '';
+  display: table;
+}

@@ -1,26 +1,24 @@
 const React = require('react');
 const CellState = require('./../../tic-tac-toe/cell-state.js');
 
-class Square extends React.Component {
+class Cell extends React.Component {
   render() {
     let text = null;
     switch (this.props.cellState) {
       case CellState.X:
-        text = 'X';
+        text = <span className="cell-x">X</span>;
         break;
       case CellState.O:
-        text = 'O';
+        text = <span className="cell-o">O</span>;
         break;
     }
 
-    text = 'X';
-
     return (
-      <button className="square" onClick={() => this.props.onClick()}>
+      <button className="cell" onClick={() => this.props.onClick()}>
         {text}
       </button>
     );
   }
 }
 
-module.exports = Square;
+module.exports = Cell;
