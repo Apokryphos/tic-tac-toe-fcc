@@ -11,18 +11,12 @@ class PlayerSelect extends React.Component {
   render() {
     return (
       <div className="player-select">
-        <h1>Select Player</h1>
-        <button
-          className="cell-x active-player-x"
-          onClick={() => this.handleClick(CellState.X)}
-        >
+        <h2>Select Player</h2>
+        <button onClick={() => this.handleClick(CellState.X)}>
           X
         </button>
-        <button
-          className="cell-o active-player-o"
-          onClick={() => this.handleClick(CellState.O)}
-        >
-          O
+        <button onClick={() => this.handleClick(CellState.O)}>
+          <span>O</span>
         </button>
       </div>
     );

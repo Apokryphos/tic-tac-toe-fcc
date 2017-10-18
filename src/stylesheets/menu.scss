@@ -1,0 +1,15 @@
+@import 'palette';
+
+/*
+  Container for game status and reset button.
+  Empty during player select.
+ */
+.menu-container {
+  height: 20vmin;
+  margin: 0;
+  padding: 0;
+}
+
+.status-text {
+  color: black;
+}

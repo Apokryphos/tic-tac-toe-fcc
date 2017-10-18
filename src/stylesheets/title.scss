@@ -1,0 +1,45 @@
+@import 'palette';
+
+.title-container {
+  display: inline-block;
+  font-size: 0;
+  height: 10vmin;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.title {
+  display: inline-block;
+  font-family: 'Sniglet', cursive;
+  font-size: 6vw;
+  margin: 0;
+  padding: 0;
+}
+
+.jumble-left {
+  transform: rotate(-7deg);
+}
+
+.jumble-right {
+  transform: rotate(7deg);
+}
+
+.color-text-1 {
+  @include ColorText(#d81159);
+}
+
+.color-text-2 {
+  @include ColorText(#3c91e6);
+}
+
+.color-text-3 {
+  @include ColorText(#97db4f);
+}
+
+.color-text-4 {
+  @include ColorText(#fff05a);
+}
+
+.color-text-5 {
+  @include ColorText(#fe5f55);
+}

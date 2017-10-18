@@ -1,3 +1,14 @@
+@import 'palette';
+
 .reset-button {
-  
+  background-color: transparent;
+  border: none;
+  font-size: 4vmin;
+  font-family: 'Sniglet', cursive;
+  transition: color 1s ease;
+  @include ColorText($color-2);
+
+  &:hover {
+    @include ColorText(lighten($color-2, 25%));
+  }
 }

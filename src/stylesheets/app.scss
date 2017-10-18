@@ -1,16 +1,8 @@
 @import 'palette';
 
-.player-x {
-  @include CellTextShadow($x-color);
-  color: $x-color;
-}
-
-.player-o {
-  @include CellTextShadow($o-color);
-  color: $o-color;
-}
-
-.draw {
-  @include CellTextShadow($draw-color);
-  color: $draw-color;
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }

@@ -5,6 +5,10 @@ $cell-border-width: 0.5em;
 $cell-border-radius: 25%;
 
 .cell {
+  animation-name: cell-intro-animation;
+  animation-duration: 0.33s;
+  animation-fill-mode:forwards;
+  animation-timing-function: ease-in;
   background-color: $cell-background-color;
   border: $cell-border-width solid #333;
   border-radius: $cell-border-radius;
@@ -12,6 +16,7 @@ $cell-border-radius: 25%;
   float: left;
   font-family: 'Permanent Marker', cursive;
   margin: 0;
+  opacity: 0;
   padding: 0;
   vertical-align: middle;
   text-align: center;
@@ -25,54 +30,71 @@ $cell-border-radius: 25%;
 
 .cell-text {
   display: inline-block;
-  font-size: 80px;
+  font-size: 20vmin;
   height: 100%;
   line-height: 100%;
+  opacity: 0;
   position: relative;
   top: 50%;
   transform: translate(0, -50%);
+}
 
-  @include media-small() {
-    font-size: 144px;
+@keyframes cell-intro-animation {
+  0% {
+    opacity: 0;
   }
-
-  @include media-medium() {
-    font-size: 192px;
-  }
-
-  @include media-large() {
-    font-size: 257px;
-  }
-
-  @include media-xl() {
-    font-size: 300px;
+  100% {
+    opacity: 1;
   }
 }
 
-.cell-x {
-  background-color: $x-background-color;
-  color: $x-color;
-  border-color: $x-border-color;
-  @include CellTextShadow($x-color);
-  transition: background-color 1s ease, border-color 1s ease, color 1s ease, text-shadow 1s ease-in;
+@keyframes text-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.cell-o {
-  background-color: $o-background-color;
-  color: $o-color;
-  border-color: $o-border-color;
-  @include CellTextShadow($o-color);
-  transition: background-color 1s ease, border-color 1s ease, color 1s ease, text-shadow 1s ease;
+.cell-occupied {
+
+  .cell-text {
+    animation-name: text-animation;
+    animation-duration: 0.33s;
+    animation-fill-mode:forwards;
+    animation-timing-function: ease-in;
+  }
 }
 
-.active-player-x:hover {
-  background-color: lighten($x-color, 25%);
-  border-color: lighten($x-border-color, 25%);
-  transition: all 0.33s ease;
+@mixin Child($position, $color) {
+  &:nth-of-type(#{$position}) {
+    @content;
+  }
 }
 
-.active-player-o:hover {
-  background-color: lighten($o-color, 25%);
-  border-color: lighten($o-border-color, 25%);
-  transition: all 0.33s ease;
+@mixin CellBorder($position, $color) {
+  @include Child($position, $color) {
+    border-color: $color;
+    color: $color;
+    transition: all 1.5s ease;
+    @include CellTextShadow($color);
+
+    &:hover {
+      background-color: lighten($color, 25%);
+      border-color: darken($color, 25%);
+    }
+  }
+}
+
+.cell {
+  @include CellBorder(1, $color-1);
+  @include CellBorder(2, $color-2);
+  @include CellBorder(3, $color-3);
+  @include CellBorder(4, $color-4);
+  @include CellBorder(5, $color-5);
+  @include CellBorder(6, $color-1);
+  @include CellBorder(7, $color-2);
+  @include CellBorder(8, $color-3);
+  @include CellBorder(9, $color-4);
 }

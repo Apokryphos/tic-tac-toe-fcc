@@ -3,6 +3,7 @@ const Board = require('./components/board.jsx');
 const CellState = require('./../tic-tac-toe/cell-state.js');
 const Game = require('./../tic-tac-toe/game.js');
 const PlayerSelect = require('./components/player-select.jsx');
+const Title = require('./components/title.jsx');
 const VictoryState = require('./../tic-tac-toe/victory-state.js');
 
 class App extends React.Component {
@@ -49,60 +50,72 @@ class App extends React.Component {
   }
 
   renderBoard() {
-    let textClass = null;
+    return (
+      <Board
+        activePlayer={this.state.game.getActivePlayer()}
+        cells={this.state.cells}
+        onCellClick={index => this.handleCellClick(index)}
+      />
+    );
+  }
+
+  renderMenu() {
     let text = null;
     let resetButton = null;
     const victoryState = this.state.game.board.getVictoryState();
     switch (victoryState) {
       case VictoryState.NONE:
         const player = this.state.game.getActivePlayer();
-        text = `${CellState.toString(player.cellState)}'s turn`;
-        textClass = player.cellState === CellState.X ? 'player-x' : 'player-o';
+        text = `${CellState.toString(player.cellState)}'s turn.`;
         break;
       case VictoryState.X:
-        text = 'X Won.';
-        textClass = 'player-x';
+        text = 'X Won!';
         resetButton = this.renderResetButton();
         break;
       case VictoryState.O:
-        text = 'O Won.';
-        textClass = 'player-o';
+        text = 'O Won!';
         resetButton = this.renderResetButton();
         break;
       case VictoryState.DRAW:
-        text = 'Draw.';
-        textClass = 'draw';
+        text = 'It\'s a draw!';
         resetButton = this.renderResetButton();
         break;
     }
 
     return (
-      <div className="board-container">
-        <Board
-          activePlayer={this.state.game.getActivePlayer()}
-          cells={this.state.cells}
-          onCellClick={index => this.handleCellClick(index)}
-        />
-        <h1 className={textClass}>{text}</h1>
+      <div>
+        <h1 className='status-text'>{text}</h1>
         {resetButton}
       </div>
     );
   }
 
-  renderPlayerSelect() {
-    return <PlayerSelect onClick={this.handlePlayerSelect} />;
-  }
-
   renderResetButton() {
-    return (<button className="reset-button" onClick={this.handleReset}>Play again?</button>);
+    return (
+      <button className="reset-button" onClick={this.handleReset}>
+        Play again?
+      </button>
+    );
   }
 
   render() {
+    let gameArea = null;
+    let menuArea = null;
+
     if (this.state.game) {
-      return this.renderBoard();
+      gameArea = this.renderBoard();
+      menuArea = this.renderMenu();
     } else {
-      return this.renderPlayerSelect();
+      gameArea = <PlayerSelect onClick={this.handlePlayerSelect} />;
     }
+
+    return (
+      <div>
+        <Title />
+        <div className="game-container">{gameArea}</div>
+        <div className="menu-container">{menuArea}</div>
+      </div>
+    );
   }
 }
 

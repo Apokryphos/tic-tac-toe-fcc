@@ -2,11 +2,20 @@
   text-shadow: 4px 4px 0px darken($color, 30%);
 }
 
-$page-background-color: #4d5359;
+@mixin ColorText($color) {
+  color: $color;
+  text-shadow: -0.1875rem 0.1875rem 0 darken($color, 25%);
+}
+
+$color-1: #d81159;
+$color-2: #3c91e6;
+$color-3: #97db4f;
+$color-4: #fff05a;
+$color-5: #fe5f55;
+
+$page-background-color: #fff;
 
 $cell-background-color: $page-background-color;
-
-$draw-color: #eee;
 
 $x-background-color: #8f2d56;
 $x-border-color: #6a0136;
@@ -15,3 +24,6 @@ $x-color: #d81159;
 $o-background-color: #79c99e;
 $o-border-color: #508484;
 $o-color: #97db4f;
+
+$player-select-color: #3c91e6;
+$status-color: #3c91e6;
