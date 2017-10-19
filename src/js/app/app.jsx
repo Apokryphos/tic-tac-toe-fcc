@@ -6,6 +6,8 @@ const PlayerSelect = require('./components/player-select.jsx');
 const Title = require('./components/title.jsx');
 const VictoryState = require('./../tic-tac-toe/victory-state.js');
 
+const AI_MOVE_DELAY = 600;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +19,27 @@ class App extends React.Component {
       cells: Array(9).fill(null),
       game: null
     };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.game) {
+      const player = this.state.game.getActivePlayer();
+
+      if (player.aiEnabled) {
+        const victoryState = this.state.game.board.getVictoryState();
+
+        if (victoryState === VictoryState.NONE) {
+          const move = () => {
+            this.state.game.aiMove();
+            this.setState({
+              cells: this.state.game.board.cells.slice()
+            });
+          };
+
+          setTimeout(move, AI_MOVE_DELAY);
+        }
+      }
+    }
   }
 
   handleCellClick(index) {
@@ -77,14 +100,14 @@ class App extends React.Component {
         resetButton = this.renderResetButton();
         break;
       case VictoryState.DRAW:
-        text = 'It\'s a draw!';
+        text = "It's a draw!";
         resetButton = this.renderResetButton();
         break;
     }
 
     return (
       <div>
-        <h1 className='status-text'>{text}</h1>
+        <h1 className="status-text">{text}</h1>
         {resetButton}
       </div>
     );

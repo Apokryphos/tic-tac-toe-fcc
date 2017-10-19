@@ -12,10 +12,9 @@ function getScore(victoryState, player, depth) {
     return 0;
   } else {
     //  Return score from view of player
-    return VictoryState.getCellState(victoryState) ===
-      player ?
-      SCORE_BASE - depth :
-      depth - SCORE_BASE;
+    return VictoryState.getCellState(victoryState) === player
+      ? SCORE_BASE - depth
+      : depth - SCORE_BASE;
   }
 }
 
@@ -23,13 +22,18 @@ function Ai(cellState) {
   this.cellState = cellState;
 }
 
-Ai.prototype.getMove = function(game) {
+Ai.prototype.canMove = function(game) {
   const emptyCells = game.board.getEmptyCellIndices();
+  return emptyCells.length > 0;
+};
 
+Ai.prototype.getMove = function(game) {
   //  This shouldn't be called if there are no empty cells
-  if (emptyCells.length === 0) {
+  if (!this.canMove(game)) {
     throw new Error('Game is a draw. No moves available.');
   }
+
+  const emptyCells = game.board.getEmptyCellIndices();
 
   //  First move? Pick random cell for now...
   if (emptyCells.length === game.board.cells.length) {
@@ -38,14 +42,10 @@ Ai.prototype.getMove = function(game) {
 
   this.bestMove = null;
 
-  this.minMax(
-    game.board,
-    this.cellState,
-    this.cellState,
-    0);
+  this.minMax(game.board, this.cellState, this.cellState, 0);
 
   return this.bestMove;
-}
+};
 
 Ai.prototype.minMax = function(board, player, turn, depth) {
   //  Return score if there is a winner
@@ -58,7 +58,7 @@ Ai.prototype.minMax = function(board, player, turn, depth) {
   const moves = board.getEmptyCellIndices();
 
   //  Calculate the score for each move
-  const scores = moves.map((cellIndex) => {
+  const scores = moves.map(cellIndex => {
     //  Create a new board to represent this possible state
     const moveBoard = new GameBoard(board);
 
@@ -70,7 +70,8 @@ Ai.prototype.minMax = function(board, player, turn, depth) {
       moveBoard,
       player,
       CellState.getOpponent(turn),
-      depth + 1);
+      depth + 1
+    );
   });
 
   let score = 0;
@@ -84,6 +85,6 @@ Ai.prototype.minMax = function(board, player, turn, depth) {
   this.bestMove = moves[scoreIndex];
 
   return score;
-}
+};
 
 module.exports = Ai;

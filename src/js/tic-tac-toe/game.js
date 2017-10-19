@@ -15,11 +15,10 @@ function Game(playerCellState = CellState.X) {
     this.players[1].setAiEnabled(true);
   } else {
     this.players[0].setAiEnabled(true);
-    this.aiMove();
   }
 }
 
-Game.prototype.aiMove = function(cellIndex) {
+Game.prototype.aiMove = function() {
   if (this.getActivePlayer().aiEnabled) {
     const cellIndex = this.getActivePlayer().ai.getMove(this);
     if (this.board.getCellByIndex(cellIndex) === CellState.EMPTY) {
@@ -40,8 +39,6 @@ Game.prototype.move = function(player, cellIndex) {
       this.nextPlayer();
     }
   }
-
-  this.aiMove();
 }
 
 Game.prototype.nextPlayer = function() {

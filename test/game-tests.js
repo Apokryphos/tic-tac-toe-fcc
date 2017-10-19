@@ -25,8 +25,14 @@ test('Game alternates between players after move (local player is X)', t => {
   //  All cells are empty
   t.equal(game.board.getEmptyCellIndices().length, 9);
 
-  //  Player moves. AI moves immediately after.
+  //  Player moves.
   game.move(game.players[0], 0);
+
+  //  One cell is no longer empty.
+  t.equal(game.board.getEmptyCellIndices().length, 8);
+
+  //  AI player moves.
+  game.aiMove();
 
   //  Two cells are no longer empty.
   t.equal(game.board.getEmptyCellIndices().length, 7);
@@ -43,15 +49,27 @@ test('Game alternates between players after move (local player is O)', t => {
   t.equal(game.players[0].aiEnabled, true);
   t.equal(game.players[1].aiEnabled, false);
 
-  //  AI moved immediately so second player should be active
-  t.equal(game.getActivePlayer(), game.players[1]);
+  //  AI player should be active.
+  t.equal(game.getActivePlayer(), game.players[0]);
+
+  //  AI moves.
+  game.aiMove();
 
   //  One cell is no longer empty
   t.equal(game.board.getEmptyCellIndices().length, 8);
 
-  //  Player moves. AI moves immediately after.
+  //  Second player should be active
+  t.equal(game.getActivePlayer(), game.players[1]);
+
+  //  Second player moves.
   const cellIndex = game.board.getEmptyCellIndices()[0];
   game.move(game.players[1], cellIndex);
+
+  //  Two cells are no longer empty
+  t.equal(game.board.getEmptyCellIndices().length, 7);
+
+  //  AI moves.
+  game.aiMove();
 
   //  Three cells are no longer empty.
   t.equal(game.board.getEmptyCellIndices().length, 6);
