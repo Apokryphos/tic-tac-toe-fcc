@@ -2,9 +2,12 @@
 
 .board {
   display: inline-grid;
+  display: -ms-inline-grid;
   grid-gap: 1vmin;
   grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-columns: 23vmin 1vmin 23vmin 1vmin 23vmin;
   grid-template-rows: 1fr 1fr 1fr;
+  -ms-grid-rows: 23vmin 1vmin 23vmin 1vmin 23vmin;
   height: 70vmin;
   margin: 0 auto;
   padding: 0;

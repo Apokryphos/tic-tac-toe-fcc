@@ -16,7 +16,8 @@ class App extends React.Component {
     this.handleReset = this.handleReset.bind(this);
 
     this.state = {
-      cells: Array(9).fill(null),
+      //  IE doesn't support Array fill method
+      cells: [null, null, null, null, null, null, null, null, null],
       game: null
     };
   }

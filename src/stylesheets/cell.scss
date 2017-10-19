@@ -7,7 +7,7 @@ $cell-border-radius: 25%;
 .cell {
   animation-name: cell-intro-animation;
   animation-duration: 0.33s;
-  animation-fill-mode:forwards;
+  animation-fill-mode: forwards;
   animation-timing-function: ease-in;
   background-color: $cell-background-color;
   border: $cell-border-width solid #333;
@@ -58,11 +58,10 @@ $cell-border-radius: 25%;
 }
 
 .cell-occupied {
-
   .cell-text {
     animation-name: text-animation;
     animation-duration: 0.33s;
-    animation-fill-mode:forwards;
+    animation-fill-mode: forwards;
     animation-timing-function: ease-in;
   }
 }
@@ -73,8 +72,27 @@ $cell-border-radius: 25%;
   }
 }
 
+@mixin GridColumn($start, $span: 1) {
+  grid-column: #{$start} / #{$start + $span};
+  //  IE treats gaps as columns
+  -ms-grid-column: #{$start + ($start - 1)};
+  -ms-grid-column-span: $span;
+}
+
+@mixin GridRow($start, $span: 1) {
+  grid-row: #{$start} / #{$start + $span};
+  -ms-grid-row: #{$start + ($start - 1)};
+  -ms-grid-row-span: $span;
+}
+
 @mixin CellBorder($position, $color) {
   @include Child($position, $color) {
+    $x: 1 + (($position - 1) % 3);
+    @include GridColumn($x);
+
+    $y: floor(1 + (($position - 1) / 3));
+    @include GridRow($y);
+
     border-color: $color;
     color: $color;
     transition: all 1.5s ease;
