@@ -11,6 +11,8 @@
 }
 
 .status-text {
-  color: black;
   font-size: 8vmin;
+  margin: 0;
+  padding: 0;
+  @include ColorText($status-color);
 }

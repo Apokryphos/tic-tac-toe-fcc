@@ -20,7 +20,7 @@ $cell-border-radius: 25%;
   padding: 0;
   text-align: center;
   width: 20vmin;
-  @include CellTextShadow(transparent);
+  @include TextShadow(transparent);
 
   &:focus {
     outline: none;
@@ -92,7 +92,7 @@ $cell-border-radius: 25%;
 
     border-color: $color;
     color: $color;
-    @include CellTextShadow($color);
+    @include TextShadow($color);
 
     $duration: 1s;
     transition: background-color $duration, border-color $duration,

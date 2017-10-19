@@ -108,7 +108,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1 className="status-text">{text}</h1>
+        <h2 className="status-text">{text}</h2>
         {resetButton}
       </div>
     );

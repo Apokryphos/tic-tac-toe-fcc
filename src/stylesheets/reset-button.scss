@@ -5,10 +5,12 @@
   border: none;
   font-size: 4vmin;
   font-family: 'Sniglet', cursive;
+  margin: 0;
+  padding: 0;
   transition: color 1s ease;
-  @include ColorText($color-2);
+  @include ColorText($color-1);
 
   &:hover {
-    @include ColorText(lighten($color-2, 25%));
+    @include ColorText(lighten($color-1, 25%));
   }
 }

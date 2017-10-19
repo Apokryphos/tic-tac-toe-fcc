@@ -37,6 +37,8 @@
 
   h2 {
     font-size: 7vmin;
+    margin: 0 0 3vmin 0;
+    padding: 0;
     @include ColorText($player-select-color);
   }
 }

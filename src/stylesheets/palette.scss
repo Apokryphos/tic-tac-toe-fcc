@@ -1,10 +1,10 @@
-@mixin CellTextShadow($color) {
-  text-shadow: 4px 4px 0px darken($color, 30%);
+@mixin TextShadow($color) {
+  text-shadow: -0.1875rem 0.1875rem 0 darken($color, 25%);
 }
 
 @mixin ColorText($color) {
   color: $color;
-  text-shadow: -0.1875rem 0.1875rem 0 darken($color, 25%);
+  @include TextShadow($color);
 }
 
 $color-1: #d81159;
@@ -25,5 +25,5 @@ $o-background-color: #79c99e;
 $o-border-color: #508484;
 $o-color: #97db4f;
 
-$player-select-color: #3c91e6;
-$status-color: #3c91e6;
+$player-select-color: $color-2;
+$status-color: $color-2;
