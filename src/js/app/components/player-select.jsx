@@ -13,7 +13,7 @@ class PlayerSelect extends React.Component {
       <div className="player-select">
         <h2>Select Player</h2>
         <button onClick={() => this.handleClick(CellState.X)}>
-          X
+          <span>X</span>
         </button>
         <button onClick={() => this.handleClick(CellState.O)}>
           <span>O</span>

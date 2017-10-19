@@ -1,7 +1,7 @@
 @import 'media';
 @import 'palette';
 
-$cell-border-width: 0.5em;
+$cell-border-width: 1vmin;
 $cell-border-radius: 25%;
 
 .cell {
@@ -13,14 +13,13 @@ $cell-border-radius: 25%;
   border: $cell-border-width solid #333;
   border-radius: $cell-border-radius;
   color: transparent;
-  float: left;
   font-family: 'Permanent Marker', cursive;
+  height: 20vmin;
   margin: 0;
   opacity: 0;
   padding: 0;
-  vertical-align: middle;
   text-align: center;
-  overflow: hidden;
+  width: 20vmin;
   @include CellTextShadow(transparent);
 
   &:focus {
@@ -29,14 +28,12 @@ $cell-border-radius: 25%;
 }
 
 .cell-text {
-  display: inline-block;
-  font-size: 20vmin;
-  height: 100%;
-  line-height: 100%;
+  font-size: 16vmin;
+  height: 16vmin;
+  line-height: 14vmin;
+  margin: 0;
+  padding: 0;
   opacity: 0;
-  position: relative;
-  top: 50%;
-  transform: translate(0, -50%);
 }
 
 @keyframes cell-intro-animation {
@@ -95,8 +92,11 @@ $cell-border-radius: 25%;
 
     border-color: $color;
     color: $color;
-    transition: all 1.5s ease;
     @include CellTextShadow($color);
+
+    $duration: 1s;
+    transition: background-color $duration, border-color $duration,
+      color $duration, opacity $duration;
 
     &:hover {
       background-color: lighten($color, 25%);

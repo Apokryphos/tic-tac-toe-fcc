@@ -13,10 +13,9 @@
   button {
     align-items: center;
     background-color: transparent;
-    border: 0.5vmin solid #333;
+    border: 1vmin solid #333;
     border-radius: 50%;
-    font-family: 'Sniglet', cursive;
-    font-size: 15vmin;
+    // font-size: 15vmin;
     height: 20vmin;
     line-height: 20vmin;
     margin: 3vmin;
@@ -25,10 +24,19 @@
     width: 20vmin;
     @include CellBorder(1, $color-1);
     @include CellBorder(2, $color-5);
+
+    span {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 15vmin;
+      height: 15vmin;
+      line-height: 16vmin;
+      margin: 0;
+      padding: 0;
+    }
   }
 
   h2 {
-    font-size: 8vmin;
+    font-size: 7vmin;
     @include ColorText($player-select-color);
   }
 }

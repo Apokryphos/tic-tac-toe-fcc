@@ -21,7 +21,7 @@ class Cell extends React.Component {
 
     return (
       <button className={cellClass} onClick={() => this.props.onClick()}>
-        <span className={cellTextClass}>{text}</span>
+        <div className={cellTextClass}>{text}</div>
       </button>
     );
   }
